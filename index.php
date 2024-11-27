@@ -22,10 +22,23 @@
     </head>
     <body>
         <header>
-            <h2>Index</h2>
-            <form action="<?php echo($_SERVER['PHP_SELF']); ?>" method="post" novalidate>
-                <input type="submit" id="login" name="login" value="login">
-            </form>
+            <div>
+                <h2>Index</h2>
+            </div>
+            <div>
+                <?php
+                    //Si ya se ha iniciado sesion
+                    if (isset($_SESSION['usuarioDAW207LoginLogoffTema5'])) {
+                        print(<<<FIN
+                            <p>{$_SESSION['usuarioDAW207LoginLogoffTema5']->T01_DescUsuario}</p>
+                            <img src="{$_SESSION['usuarioDAW207LoginLogoffTema5']->T01_ImagenUsuario}" alt="img">
+                        FIN);
+                    }
+                ?>
+                <form action="<?php echo($_SERVER['PHP_SELF']); ?>" method="post" novalidate>
+                    <input type="submit" id="login" name="login" value="login">
+                </form>
+            </div>
         </header>
         <main>
             

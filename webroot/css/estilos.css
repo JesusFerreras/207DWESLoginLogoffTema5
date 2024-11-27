@@ -26,15 +26,6 @@
     --alturaFooter: 5vh;
 }
 
-* {
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-style: normal;
-    font-weight: normal;
-    color: var(--colorLetra);
-    text-align: left;
-}
-
 body.claro {
     --fondo1: var(--fondo1C);
     --fondo2: var(--fondo2C);
@@ -49,6 +40,15 @@ body {
     --fondo3: var(--fondo3O);
     --fondo4: var(--fondo4O);
     --colorLetra: var(--colorLetraO);
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    color: var(--colorLetra);
+    text-align: left;
 }
 
 body {

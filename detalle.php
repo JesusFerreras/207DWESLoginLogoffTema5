@@ -5,14 +5,17 @@
  * @since 2024/11/21
  * @version 2024/11/26
  */
-
+    
+    //Se crea o reanuda la sesion
     session_start();
     
+    //Si no se ha iniciado sesion
     if (!isset($_SESSION['usuarioDAW207LoginLogoffTema5'])) {
         header('Location: login.php');
         exit();
     }
 
+    //Si se ha pulsado el boton programa
     if (isset($_REQUEST['programa'])) {
         header('Location: programa.php');
         exit();
@@ -42,6 +45,7 @@
              * @version 2024/11/20
              */
             
+            //Se sacan por pantalla los valores de las variables superglobales
             print('<h3 style="margin-bottom: 16px">$_SESSION</h3>'.(isset($_SESSION)? mostrar($_SESSION):'<p>Variable indefinida</p>'));
             print('<h3 style="margin-bottom: 16px">$_COOKIE</h3>'.mostrar($_COOKIE));
             print('<h3 style="margin-bottom: 16px">$_SERVER</h3>'.mostrar($_SERVER));

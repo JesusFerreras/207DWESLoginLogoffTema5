@@ -8,21 +8,28 @@
 
     session_start();
     
-    if (!isset($_SESSION['usuarioDAW207LoginLogoffTema5'])) {
-        header('Location: login.php');
+    //Si ya se ha iniciado sesion
+    if (isset($_SESSION['usuarioDAW207LoginLogoffTema5'])) {
+        header('Location: programa.php');
         exit();
     }
-            
+    
     //Se importa el fichero con los parametros de conexion
     require_once 'config/confDB.php';
 
     $mensajeError = '';
-
+    
+    //Indica si se debe finalizar la ejecucion de la pagina
+    $salir = false;
+    
     if (isset($_REQUEST['volver'])) {
         header('Location: index.php');
         exit();
     }
+    
+    //Si se ha pulsado el boton 'Iniciar Sesion'
     if (isset($_REQUEST['inicioSesion'])) {
+        //Si se han rellenado los campos 'codigoUsuario' y 'contrasenaUsuario'
         if (isset($_REQUEST['codigoUsuario']) && isset($_REQUEST['contrasenaUsuario'])) {
             try {
                 //Se abre la conexion
@@ -45,7 +52,7 @@
 
                 //Si no existe el usuario
                 if (!$usuario) {
-                    $mensajeError = '<p>Error de autenticación</p>';
+                    $mensajeError = '<p class="error">Error de autenticación</p>';
                 } else {
                     //Se actualiza el numero de conexiones del usuario
                     $DB->exec(<<<FIN
@@ -59,17 +66,20 @@
                     $_SESSION['usuarioDAW207LoginLogoffTema5'] = $usuario;
                             
                     header('Location: programa.php');
-                    exit();
+                    $salir = true;
                 }
             } catch (Exception $ex) {
                 //Se muestran el mensaje y codigo de error
-                $mensajeError = '<p>Error: '.$ex->getMessage().'<br>Codigo: '.$ex->getCode().'</p>';
+                $mensajeError = '<p class="error">Error: '.$ex->getMessage().'<br>Codigo: '.$ex->getCode().'</p>';
             } finally {
                 //Se cierra la conexion
                 unset($DB);
+                if ($salir) {
+                    exit();
+                }
             }
         } else {
-            $mensajeError = '<p>Error de autenticación</p>';
+            $mensajeError = '<p class="error">Error de autenticación</p>';
         }
     }
 ?>
@@ -88,11 +98,11 @@
         </header>
         <main>
             <form action="<?php echo($_SERVER['PHP_SELF']); ?>" method="post" novalidate>
-                <input type="text" id="codigoUsuario" name="codigoUsuario">
-                <input type="password" id="contrasenaUsuario" name="contrasenaUsuario">
+                <input type="text" id="codigoUsuario" name="codigoUsuario" placeholder="Código" required autofocus><br>
+                <input type="password" id="contrasenaUsuario" name="contrasenaUsuario" placeholder="Contraseña" required><br>
+                <?php print($mensajeError); ?>
                 <input type="submit" id="inicioSesion" name="inicioSesion" value="Iniciar sesión">
                 <input type="submit" id="volver" name="volver" value="Volver">
-                <?php print($mensajeError); ?>
             </form>
         </main>
         <footer>

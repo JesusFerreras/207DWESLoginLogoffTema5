@@ -6,17 +6,24 @@
  * @version 2024/11/26
  */
 
+    //Se crea o reanuda la sesion
     session_start();
     
+    //Si no se ha iniciado sesion
     if (!isset($_SESSION['usuarioDAW207LoginLogoffTema5'])) {
         header('Location: login.php');
         exit();
     }
-
+    
+    //Si se ha pulsado el boton 'Cerrar Sesion'
     if (isset($_REQUEST['cierreSesion'])) {
+        session_destroy();
+        
         header('Location: index.php');
         exit();
     }
+    
+    //Si se ha pulsado el boton 'Detalle'
     if (isset($_REQUEST['detalle'])) {
         header('Location: detalle.php');
         exit();
@@ -35,16 +42,16 @@
         <header>
             <h2>Programa</h2>
             <form action="<?php echo($_SERVER['PHP_SELF']); ?>" method="post" novalidate>
-                <input type="submit" id="cierreSesion" name="cierreSesion" value="cierreSesion">
+                <input type="submit" id="cierreSesion" name="cierreSesion" value="Cerrar Sesión">
             </form>
         </header>
         <main>
             <form action="<?php echo($_SERVER['PHP_SELF']); ?>" method="post" novalidate>
-                <input type="submit" id="detalle" name="detalle" value="detalle">
+                <input type="submit" id="detalle" name="detalle" value="Detalle">
             </form>
             <?php
                 print(
-                    "<p>Bienvenido {$_SESSION['usuarioDAW207LoginLogoffTema5']->T01_DescUsuario} esta es la ".($_SESSION['usuarioDAW207LoginLogoffTema5']->T01_NumConexiones+1)." vez que se conecta.".
+                    "<p>Bienvenido {$_SESSION['usuarioDAW207LoginLogoffTema5']->T01_DescUsuario} esta es la ".($_SESSION['usuarioDAW207LoginLogoffTema5']->T01_NumConexiones+1)."º vez que se conecta.".
                     ($_SESSION['usuarioDAW207LoginLogoffTema5']->T01_NumConexiones>0? " Se conectó por última vez el {$_SESSION['usuarioDAW207LoginLogoffTema5']->T01_FechaHoraUltimaConexion}</p>" : "</p>")
                 );
             ?>
