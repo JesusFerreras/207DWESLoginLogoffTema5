@@ -19,9 +19,6 @@
 
     $mensajeError = '';
     
-    //Indica si se debe finalizar la ejecucion de la pagina
-    $salir = false;
-    
     if (isset($_REQUEST['volver'])) {
         header('Location: index.php');
         exit();
@@ -66,17 +63,18 @@
                     $_SESSION['usuarioDAW207LoginLogoffTema5'] = $usuario;
                             
                     header('Location: programa.php');
-                    $salir = true;
                 }
+
+                //Se cierra la conexion
+                unset($DB);
+                
+                exit();
             } catch (Exception $ex) {
                 //Se muestran el mensaje y codigo de error
                 $mensajeError = '<p class="error">Error: '.$ex->getMessage().'<br>Codigo: '.$ex->getCode().'</p>';
-            } finally {
+                
                 //Se cierra la conexion
                 unset($DB);
-                if ($salir) {
-                    exit();
-                }
             }
         } else {
             $mensajeError = '<p class="error">Error de autenticación</p>';
@@ -89,7 +87,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="author" content="Jesús Ferreras">
-        <link rel="stylesheet" href="../webroot/css/estilos.css">
+        <link rel="stylesheet" href="webroot/css/estilos.css">
         <title>Login</title>
     </head>
     <body>
@@ -107,6 +105,7 @@
         </main>
         <footer>
             <a href="../../index.html">Jesús Ferreras González</a>
+            <a href="../207DWESProyectoDWES/indexProyectoDWES.php">DWES</a>
             <a href="https://github.com/JesusFerreras/207DWESLoginLogoffTema5.git" target="_blank"><img src="doc/github.png" alt="github"></a>
         </footer>
     </body>

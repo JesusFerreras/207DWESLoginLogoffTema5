@@ -70,6 +70,9 @@ a:active {
 header {
     margin:32px 64px 16px;
     border-bottom: 1px solid var(--fondo1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
     h1 {
 
@@ -272,6 +275,18 @@ main {
         p.error {
             color: var(--rojo);
         }
+        form#seleccionIdioma {
+            background-color: var(--fondo2);
+        }
+            form#seleccionIdioma input {
+                display: none;
+            }
+            form#seleccionIdioma label {
+                display: block;
+                padding: 4px;
+                width: fit-content;
+                height: fit-content;
+            }
 
 footer {
     background-color: var(--fondo4);
