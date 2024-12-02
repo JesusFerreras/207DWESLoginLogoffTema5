@@ -19,7 +19,7 @@
     if (isset($_REQUEST['cierreSesion'])) {
         session_destroy();
         
-        header('Location: index.php');
+        header('Location: ../index.php');
         exit();
     }
     
@@ -35,7 +35,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="author" content="Jesús Ferreras">
-        <link rel="stylesheet" href="webroot/css/estilos.css">
+        <link rel="stylesheet" href="../webroot/css/estilos.css">
         <title>Programa</title>
     </head>
     <body>
@@ -50,20 +50,27 @@
                 <input type="submit" id="detalle" name="detalle" value="Detalle">
             </form>
             <?php
-            switch ($_COOKIE['idioma']) {
-                case 'en':
-                    print(
-                        "<p>Welcome {$_SESSION['usuarioDAW207LoginLogoffTema5']->T01_DescUsuario} this is the ".($_SESSION['usuarioDAW207LoginLogoffTema5']->T01_NumConexiones+1)."º time you log in.".
-                        ($_SESSION['usuarioDAW207LoginLogoffTema5']->T01_NumConexiones>0? " Your last log in was on {$_SESSION['usuarioDAW207LoginLogoffTema5']->T01_FechaHoraUltimaConexion}.</p>" : "</p>")
-                    );
-                break;
+            if (isset($_COOKIE['idioma'])) {
+                switch ($_COOKIE['idioma']) {
+                    case 'en':
+                        print(
+                            "<p>Welcome {$_SESSION['usuarioDAW207LoginLogoffTema5']->T01_DescUsuario} this is the ".($_SESSION['usuarioDAW207LoginLogoffTema5']->T01_NumConexiones+1)."º time you log in.".
+                            ($_SESSION['usuarioDAW207LoginLogoffTema5']->T01_NumConexiones>0? " Your last log in was on {$_SESSION['usuarioDAW207LoginLogoffTema5']->T01_FechaHoraUltimaConexion}.</p>" : "</p>")
+                        );
+                    break;
 
-                default:
-                    print(
-                        "<p>Bienvenido {$_SESSION['usuarioDAW207LoginLogoffTema5']->T01_DescUsuario} esta es la ".($_SESSION['usuarioDAW207LoginLogoffTema5']->T01_NumConexiones+1)."º vez que se conecta.".
-                        ($_SESSION['usuarioDAW207LoginLogoffTema5']->T01_NumConexiones>0? " Se conectó por última vez el {$_SESSION['usuarioDAW207LoginLogoffTema5']->T01_FechaHoraUltimaConexion}.</p>" : "</p>")
-                    );
-                break;
+                    case 'es':
+                        print(
+                            "<p>Bienvenido {$_SESSION['usuarioDAW207LoginLogoffTema5']->T01_DescUsuario} esta es la ".($_SESSION['usuarioDAW207LoginLogoffTema5']->T01_NumConexiones+1)."º vez que se conecta.".
+                            ($_SESSION['usuarioDAW207LoginLogoffTema5']->T01_NumConexiones>0? " Se conectó por última vez el {$_SESSION['usuarioDAW207LoginLogoffTema5']->T01_FechaHoraUltimaConexion}.</p>" : "</p>")
+                        );
+                    break;
+                }
+            } else {
+                print(
+                    "<p>Bienvenido {$_SESSION['usuarioDAW207LoginLogoffTema5']->T01_DescUsuario} esta es la ".($_SESSION['usuarioDAW207LoginLogoffTema5']->T01_NumConexiones+1)."º vez que se conecta.".
+                    ($_SESSION['usuarioDAW207LoginLogoffTema5']->T01_NumConexiones>0? " Se conectó por última vez el {$_SESSION['usuarioDAW207LoginLogoffTema5']->T01_FechaHoraUltimaConexion}.</p>" : "</p>")
+                );
             }
                 
             ?>

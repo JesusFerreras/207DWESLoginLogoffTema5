@@ -15,12 +15,15 @@
     }
     
     //Se importa el fichero con los parametros de conexion
-    require_once 'config/confDB.php';
+    require_once '../config/confDB.php';
 
     $mensajeError = '';
     
+    //Indica si se debe abandonar la pagina
+    $salir = false;
+    
     if (isset($_REQUEST['volver'])) {
-        header('Location: index.php');
+        header('Location: ../index.php');
         exit();
     }
     
@@ -61,20 +64,20 @@
                     FIN);
                     
                     $_SESSION['usuarioDAW207LoginLogoffTema5'] = $usuario;
-                            
+                    
                     header('Location: programa.php');
+                    $salir = true;
                 }
-
-                //Se cierra la conexion
-                unset($DB);
-                
-                exit();
             } catch (Exception $ex) {
                 //Se muestran el mensaje y codigo de error
                 $mensajeError = '<p class="error">Error: '.$ex->getMessage().'<br>Codigo: '.$ex->getCode().'</p>';
-                
+            } finally {
                 //Se cierra la conexion
                 unset($DB);
+                
+                if ($salir) {
+                    exit();
+                }
             }
         } else {
             $mensajeError = '<p class="error">Error de autenticación</p>';
@@ -87,7 +90,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="author" content="Jesús Ferreras">
-        <link rel="stylesheet" href="webroot/css/estilos.css">
+        <link rel="stylesheet" href="../webroot/css/estilos.css">
         <title>Login</title>
     </head>
     <body>

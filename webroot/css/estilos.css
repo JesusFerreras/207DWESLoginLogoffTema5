@@ -112,6 +112,10 @@ main {
         margin: auto;
         margin-bottom: 64px;
     }
+    main>img {
+        display: block;
+        width: 60%
+    }
     main>table {
         border: 1px solid var(--fondo1);
         border-collapse: collapse;

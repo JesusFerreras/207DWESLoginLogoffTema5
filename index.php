@@ -11,7 +11,7 @@
     }
 
     if (isset($_REQUEST['login'])) {
-        header('Location: login.php');
+        header('Location: codigoPHP/login.php');
         exit();
     }
 ?>
@@ -47,6 +47,7 @@
             </div>
         </header>
         <main>
+            <img src="doc/arbolNavegacion.png" alt="alt"/>
         </main>
         <footer>
             <a href="../../index.html">Jesús Ferreras González</a>
