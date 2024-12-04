@@ -254,6 +254,7 @@ main {
     }
         input {
             color: var(--fondo4);
+            border: none;
         }
             input[required], input.obligatorio {
                 background-color: var(--amarilloC);
@@ -263,12 +264,15 @@ main {
                 background-color: var(--grisC);
             }
             input[type="submit"] {
-                border: none;
                 padding: 8px 16px;
                 background-color: var(--colorAcento);
                 border-radius: 4px;
                 color: var(--colorLetra);
                 font-weight: bold;
+            }
+            input[type="text"], input[type="password"] {
+                border-radius: 4px;
+                border: 1px solid var(--colorLetra);
             }
                 input[type="submit"]:hover {
                     background-color: var(--colorAcentoO);
@@ -279,24 +283,50 @@ main {
         p.error {
             color: var(--rojo);
         }
-        form#seleccionIdioma {
-            background-color: var(--fondo2);
+    form#seleccionIdioma {
+        background-color: var(--fondo2);
+    }
+        form#seleccionIdioma input {
+            display: none;
         }
-            form#seleccionIdioma input {
-                display: none;
+        form#seleccionIdioma label {
+            display: inline-block;
+            padding: 4px;
+            width: fit-content;
+            height: fit-content;
+        }
+    form#accesoCuenta {
+        height: fit-content;
+        width: fit-content;
+    }
+    form#inicioSesion {
+        height: fit-content;
+        max-width: 25%;
+        min-width: 300px;
+        padding: 32px;
+    }
+        form#inicioSesion>* {
+            height: 32px;
+            width: 100%;
+            margin: 8px 0;
+        }
+        form#inicioSesion>div {
+            padding: 0;
+            display: flex;
+            justify-content: space-between;
+        }
+            form#inicioSesion>div>* {
+                width: 48%;
+                text-align: center;
             }
-            form#seleccionIdioma label {
-                display: block;
-                padding: 4px;
-                width: fit-content;
-                height: fit-content;
-            }
+        
 
 footer {
     background-color: var(--fondo4);
     width: 100%;
     display: flex;
     justify-content: space-around;
+    align-items: center;
     position: absolute;
     bottom: 0%;
     height: var(--alturaFooter);

@@ -3,13 +3,18 @@
 /**
  * @author Jesus Ferreras
  * @since 2024/11/21
- * @version 2024/11/26
+ * @version 2024/12/03
  */
 
+    //Se crea o reanuda la sesion
+    session_start();
+
+    //Si se ha escogido un idioma
     if (isset($_REQUEST['idioma'])) {
         setcookie('idioma', $_REQUEST['idioma']);
     }
 
+    //Si se ha pulsado el boton 'Login'
     if (isset($_REQUEST['login'])) {
         header('Location: codigoPHP/login.php');
         exit();
@@ -24,7 +29,8 @@
         <link rel="stylesheet" href="webroot/css/estilos.css">
         <title>Index</title>
         <style>
-            label[for="<?php echo(isset($_REQUEST['idioma'])? $_REQUEST['idioma'] : 'es'); ?>"] {
+            /*Resalta el idioma indicado por la cookie, espanol por defecto*/
+            label[for="<?php echo(isset($_COOKIE['idioma'])? $_COOKIE['idioma'] : 'es'); ?>"] {
                 background-color: var(--fondo1);
             }
         </style>
@@ -41,8 +47,8 @@
                     <input type="submit" name="idioma" id="en" value="en">
                     <label for="en">&#127468&#127463</label>
                 </form>
-                <form action="<?php echo($_SERVER['PHP_SELF']); ?>" method="post" novalidate>
-                    <input type="submit" id="login" name="login" value="login">
+                <form id="accesoCuenta" action="<?php echo($_SERVER['PHP_SELF']); ?>" method="post" novalidate>
+                    <input type="submit" id="login" name="login" value="Login">
                 </form>
             </div>
         </header>
@@ -53,6 +59,7 @@
             <a href="../../index.html">Jesús Ferreras González</a>
             <a href="../207DWESProyectoDWES/indexProyectoDWES.php">DWES</a>
             <a href="https://github.com/JesusFerreras/207DWESLoginLogoffTema5.git" target="_blank"><img src="doc/github.png" alt="github"></a>
+            <a href="https://www.w3schools.com/" target="_blank">Página imitada</a>
         </footer>
     </body>
 </html>

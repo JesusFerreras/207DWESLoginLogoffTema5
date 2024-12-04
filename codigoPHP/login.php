@@ -3,9 +3,10 @@
 /**
  * @author Jesus Ferreras
  * @since 2024/11/21
- * @version 2024/11/26
+ * @version 2024/12/03
  */
 
+    //Se crea o reanuda la sesion
     session_start();
     
     //Si ya se ha iniciado sesion
@@ -55,13 +56,17 @@
                     $mensajeError = '<p class="error">Error de autenticación</p>';
                 } else {
                     //Se actualiza el numero de conexiones del usuario
-                    $DB->exec(<<<FIN
+                    $actualizacion = $DB->prepare(<<<FIN
                         update T01_Usuario
                             set T01_NumConexiones = T01_NumConexiones+1,
                             T01_FechaHoraUltimaConexion = now()
-                            where T01_CodUsuario = '{$_REQUEST['codigoUsuario']}'
+                            where T01_CodUsuario = :codigo
                         ;
                     FIN);
+
+                    $actualizacion->execute([
+                        ':codigo' => $_REQUEST['codigoUsuario']
+                    ]);
                     
                     $_SESSION['usuarioDAW207LoginLogoffTema5'] = $usuario;
                     
@@ -98,18 +103,21 @@
             <h2>Login</h2>
         </header>
         <main>
-            <form action="<?php echo($_SERVER['PHP_SELF']); ?>" method="post" novalidate>
+            <form id="inicioSesion" action="<?php echo($_SERVER['PHP_SELF']); ?>" method="post" novalidate>
                 <input type="text" id="codigoUsuario" name="codigoUsuario" placeholder="Código" required autofocus><br>
                 <input type="password" id="contrasenaUsuario" name="contrasenaUsuario" placeholder="Contraseña" required><br>
                 <?php print($mensajeError); ?>
-                <input type="submit" id="inicioSesion" name="inicioSesion" value="Iniciar sesión">
-                <input type="submit" id="volver" name="volver" value="Volver">
+                <div>
+                    <input type="submit" id="inicioSesion" name="inicioSesion" value="Iniciar sesión">
+                    <input type="submit" id="volver" name="volver" value="Volver">
+                </div>
             </form>
         </main>
         <footer>
-            <a href="../../index.html">Jesús Ferreras González</a>
-            <a href="../207DWESProyectoDWES/indexProyectoDWES.php">DWES</a>
-            <a href="https://github.com/JesusFerreras/207DWESLoginLogoffTema5.git" target="_blank"><img src="doc/github.png" alt="github"></a>
+            <a href="../../../index.html">Jesús Ferreras González</a>
+            <a href="../../207DWESProyectoDWES/indexProyectoDWES.php">DWES</a>
+            <a href="https://github.com/JesusFerreras/207DWESLoginLogoffTema5.git" target="_blank"><img src="../doc/github.png" alt="github"></a>
+            <a href="https://www.w3schools.com/" target="_blank">Página imitada</a>
         </footer>
     </body>
 </html>

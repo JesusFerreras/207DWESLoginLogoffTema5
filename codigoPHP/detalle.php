@@ -3,7 +3,7 @@
 /**
  * @author Jesus Ferreras
  * @since 2024/11/21
- * @version 2024/11/26
+ * @version 2024/12/02
  */
     
     //Se crea o reanuda la sesion
@@ -58,9 +58,10 @@
             ?>
         </main>
         <footer>
-            <a href="../../index.html">Jesús Ferreras González</a>
-            <a href="../207DWESProyectoDWES/indexProyectoDWES.php">DWES</a>
-            <a href="https://github.com/JesusFerreras/207DWESLoginLogoffTema5.git" target="_blank"><img src="doc/github.png" alt="github"></a>
+            <a href="../../../index.html">Jesús Ferreras González</a>
+            <a href="../../207DWESProyectoDWES/indexProyectoDWES.php">DWES</a>
+            <a href="https://github.com/JesusFerreras/207DWESLoginLogoffTema5.git" target="_blank"><img src="../doc/github.png" alt="github"></a>
+            <a href="https://www.w3schools.com/" target="_blank">Página imitada</a>
         </footer>
     </body>
 </html>
