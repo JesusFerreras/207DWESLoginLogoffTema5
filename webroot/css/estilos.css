@@ -23,7 +23,6 @@
     --moradoC: #f3ecea;
     --gris: #404040;
     --grisC: #808080;
-    --alturaFooter: 5vh;
 }
 
 body.claro {
@@ -44,9 +43,10 @@ body {
 
 * {
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI';
     font-style: normal;
     font-weight: normal;
+    margin: 0;
     color: var(--colorLetra);
     text-align: left;
 }
@@ -55,9 +55,9 @@ body {
     margin: 0;
     padding: 0;
     min-height: 100vh;
+    height: fit-content;
     background-color: var(--fondo2);
-    position: relative;
-    border: 1px solid var(--fondo2);
+    flex-flow: column;
 }
 
 a:hover {
@@ -68,17 +68,20 @@ a:active {
 }
 
 header {
-    margin:32px 64px 16px;
+    min-height: 10vh;
+    height: 10vh;
+    margin: 0 64px;
     border-bottom: 1px solid var(--fondo1);
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
+    gap: 10px;
 }
     h1 {
 
     }
     header h2 {
-
+        width: 100%;
     }
     header div {
         display: flex;
@@ -103,9 +106,10 @@ header {
                 background-color: var(--fondo2);
                 border: 1px solid var(--colorLetra);
             }
-    
 main {
-    margin: 8px 16px var(--alturaFooter);
+    min-height: 85vh;
+    height: 85vh;
+    padding: 8px 16px;
 }
     main>:not(p) {
         width: 90%;
@@ -181,7 +185,6 @@ main {
                         background-color: var(--fondo2);
                         border: 1px solid var(--colorLetra);
                     }
-
     div.codigo {
         background-color: var(--colorLetra);
         border-radius: 4px;
@@ -190,7 +193,6 @@ main {
             div.codigo span {
                 font-family: 'Courier New', Courier, monospace;
             }
-
     ul.principal {
         margin: 64px auto;
     }
@@ -247,7 +249,6 @@ main {
                     border: 4px solid var(--colorLetra);
                     color: var(--colorLetra);
                 }
-
     form {
         background-color: var(--fondo1);
         border-radius: 8px;
@@ -285,17 +286,20 @@ main {
         }
     form#seleccionIdioma {
         background-color: var(--fondo2);
+        display: flex;
+        gap: 5px;
     }
         form#seleccionIdioma input {
             display: none;
         }
         form#seleccionIdioma label {
-            display: inline-block;
+            display: block;
             padding: 4px;
             width: fit-content;
             height: fit-content;
         }
-    form#accesoCuenta {
+    form.accesoCuenta {
+        background-color: var(--fondo2);
         height: fit-content;
         width: fit-content;
     }
@@ -319,21 +323,19 @@ main {
                 width: 48%;
                 text-align: center;
             }
-        
-
 footer {
+    min-height: 5vh;
+    height: 5vh;
     background-color: var(--fondo4);
     width: 100%;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    position: absolute;
-    bottom: 0%;
-    height: var(--alturaFooter);
 }
     footer a {
         display: block;
-        padding: 16px;
+        height: fit-content;
+        width: fit-content;
     }
         footer img {
             height: 25px;

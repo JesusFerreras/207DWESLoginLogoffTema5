@@ -28,6 +28,11 @@
         exit();
     }
     
+    if (isset($_REQUEST['registro'])) {
+        header('Location: registro.php');
+        exit();
+    }
+    
     //Si se ha pulsado el boton 'Iniciar Sesion'
     if (isset($_REQUEST['inicioSesion'])) {
         //Si se han rellenado los campos 'codigoUsuario' y 'contrasenaUsuario'
@@ -104,12 +109,16 @@
         </header>
         <main>
             <form id="inicioSesion" action="<?php echo($_SERVER['PHP_SELF']); ?>" method="post" novalidate>
+                <!--<div>
+                    <input type="submit" id="volver" name="volver" value="X">
+                </div>-->
                 <input type="text" id="codigoUsuario" name="codigoUsuario" placeholder="Código" required autofocus><br>
                 <input type="password" id="contrasenaUsuario" name="contrasenaUsuario" placeholder="Contraseña" required><br>
                 <?php print($mensajeError); ?>
                 <div>
                     <input type="submit" id="inicioSesion" name="inicioSesion" value="Iniciar sesión">
                     <input type="submit" id="volver" name="volver" value="Volver">
+                    <!--<input type="submit" id="registro" name="registro" value="Registrarse">-->
                 </div>
             </form>
         </main>

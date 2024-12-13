@@ -41,7 +41,7 @@
     <body>
         <header>
             <h2>Programa</h2>
-            <form id="accesoCuenta" action="<?php echo($_SERVER['PHP_SELF']); ?>" method="post" novalidate>
+            <form class="accesoCuenta" action="<?php echo($_SERVER['PHP_SELF']); ?>" method="post" novalidate>
                 <input type="submit" id="cierreSesion" name="cierreSesion" value="Cerrar Sesión">
             </form>
         </header>

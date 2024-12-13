@@ -1,5 +1,5 @@
 delete from DB207DWESProyectoTema5.T01_Usuario;
-insert into DB207DWESProyectoTema5.T01_Usuario (T01_CodUsuario,T01_Password,T01_DescUsuario,T01_Perfil) values
+insert into DB207DWESProyectoTema5.T01_Usuario(T01_CodUsuario,T01_Password,T01_DescUsuario,T01_Perfil) values
     ('admin', sha2('adminpaso', 256), 'Administrador', 'administrador'),
     ('heraclio', sha2('heracliopaso', 256), 'Heraclio Borbujo', 'usuario'),
     ('amor', sha2('amorpaso', 256), 'Amor Rodríguez', 'usuario'),
